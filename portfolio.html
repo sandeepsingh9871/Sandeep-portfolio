@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandeep — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+[data-theme="dark"]{
+  --bg:#0c0c0f;
+  --bg2:#111114;
+  --bg3:#18181d;
+  --surface:#1e1e24;
+  --surface2:#25252c;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --accent:#6366f1;
+  --accent-light:#818cf8;
+  --accent-dim:rgba(99,102,241,0.15);
+  --teal:#14b8a6;
+  --teal-dim:rgba(20,184,166,0.12);
+  --text:#e8e8ed;
+  --text2:#a0a0b0;
+  --text3:#606070;
+  --white:#ffffff;
+  --shadow:rgba(0,0,0,0.4);
+  --card-bg:#1a1a20;
+}
+[data-theme="light"]{
+  --bg:#fafafa;
+  --bg2:#f4f4f6;
+  --bg3:#eeeeF2;
+  --surface:#ffffff;
+  --surface2:#f8f8fb;
+  --border:rgba(0,0,0,0.07);
+  --border2:rgba(0,0,0,0.12);
+  --accent:#4f46e5;
+  --accent-light:#6366f1;
+  --accent-dim:rgba(79,70,229,0.08);
+  --teal:#0d9488;
+  --teal-dim:rgba(13,148,136,0.08);
+  --text:#111118;
+  --text2:#4a4a5a;
+  --text3:#9090a0;
+  --white:#ffffff;
+  --shadow:rgba(0,0,0,0.08);
+  --card-bg:#ffffff;
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;transition:background 0.3s,color 0.3s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;border-bottom:1px solid var(--border);background:var(--bg);backdrop-filter:blur(20px);transition:all 0.3s}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text);letter-spacing:-0.02em}
+.nav-logo span{color:var(--accent-light)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.02em;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.theme-btn{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.4rem 0.9rem;font-size:0.8rem;color:var(--text2);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.4rem}
+.theme-btn:hover{border-color:var(--border2);color:var(--text)}
+.resume-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:0.45rem 1.1rem;font-size:0.82rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all 0.2s}
+.resume-btn:hover{opacity:0.88;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 5% 60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.12}
+.hero-orb-1{width:500px;height:500px;background:var(--accent);top:-100px;right:-100px}
+.hero-orb-2{width:400px;height:400px;background:var(--teal);bottom:-100px;left:-50px;opacity:0.07}
+.hero-inner{position:relative;z-index:2;display:flex;align-items:center;gap:4rem;max-width:1100px;width:100%}
+.hero-photo-wrap{flex-shrink:0;position:relative}
+.hero-photo-wrap img{width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:center top;border:3px solid var(--border2);display:block;background:var(--surface)}
+.hero-photo-placeholder{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,var(--accent-dim),var(--teal-dim));border:3px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:3rem;letter-spacing:0}
+.hero-photo-ring{position:absolute;inset:-6px;border-radius:50%;border:1.5px solid var(--accent);opacity:0.4}
+.hero-text{flex:1}
+.hero-label{font-size:0.78rem;font-family:'JetBrains Mono',monospace;color:var(--accent-light);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
+.hero-label::before{content:'';width:24px;height:1px;background:var(--accent-light)}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.8rem);font-weight:800;line-height:1.1;color:var(--text);margin-bottom:0.6rem;letter-spacing:-0.03em}
+.hero-title{font-size:1.05rem;color:var(--text2);font-weight:400;margin-bottom:1.4rem;line-height:1.6}
+.hero-title strong{color:var(--text);font-weight:500}
+.hero-bio{font-size:0.95rem;color:var(--text2);max-width:520px;line-height:1.8;margin-bottom:2rem}
+.hero-stats{display:flex;gap:2.5rem;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.hstat{display:flex;flex-direction:column}
+.hstat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--text);line-height:1}
+.hstat-label{font-size:0.75rem;color:var(--text3);margin-top:0.3rem;letter-spacing:0.04em}
+.hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;padding:0.75rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.9rem;transition:all 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{opacity:0.88;transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--border2);color:var(--text2);padding:0.75rem 1.8rem;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.9rem;transition:all 0.2s;background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--text);transform:translateY(-2px)}
+.hero-socials{display:flex;gap:1.2rem;margin-top:1.5rem;flex-wrap:wrap}
+.hero-social{color:var(--text3);text-decoration:none;font-size:0.82rem;font-family:'JetBrains Mono',monospace;transition:color 0.2s;display:flex;align-items:center;gap:0.35rem}
+.hero-social:hover{color:var(--accent-light)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;color:var(--text3);font-size:0.75rem;letter-spacing:0.08em}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollAnim 2s ease infinite}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* FADE UP ANIMATION */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.5s ease,transform 0.5s ease}
+.fade-up.vis{opacity:1;transform:none}
+
+/* SECTIONS */
+section{padding:6rem 5%}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--accent-light);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--text);margin-bottom:0.8rem;letter-spacing:-0.02em}
+.section-sub{color:var(--text2);font-size:0.95rem;max-width:500px;line-height:1.7;margin-bottom:3.5rem}
+.divider{width:100%;height:1px;background:var(--border);margin:0}
+
+/* FLAGSHIP PROJECTS */
+.flagship-section{background:var(--bg)}
+.flagship-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.proj-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all 0.3s;position:relative}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-6px);box-shadow:0 20px 60px var(--shadow)}
+.proj-card-cover{height:200px;position:relative;overflow:hidden}
+.proj-card-cover svg{width:100%;height:100%}
+.proj-card-badge{position:absolute;top:1rem;left:1rem;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:100px;padding:0.3rem 0.8rem;font-size:0.68rem;font-family:'JetBrains Mono',monospace;color:#fff;letter-spacing:0.08em}
+.proj-card-body{padding:1.5rem}
+.proj-card-body h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:0.4rem;line-height:1.3}
+.proj-impact{font-size:0.82rem;color:var(--accent-light);margin-bottom:1rem;font-style:italic}
+.proj-metrics{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.2rem}
+.proj-metric{display:flex;align-items:flex-start;gap:0.5rem;font-size:0.82rem;color:var(--text2)}
+.proj-metric::before{content:'→';color:var(--accent-light);font-size:0.75rem;flex-shrink:0;margin-top:2px}
+.proj-tech{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem}
+.tech-pill{background:var(--accent-dim);color:var(--accent-light);font-size:0.72rem;font-family:'JetBrains Mono',monospace;padding:0.25rem 0.6rem;border-radius:100px}
+.view-btn{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.82rem;color:var(--accent-light);font-weight:500;cursor:pointer;border:none;background:none;padding:0;transition:gap 0.2s}
+.view-btn:hover{gap:0.7rem}
+
+/* PROJECT MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:2000;display:none;align-items:center;justify-content:center;padding:2rem;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:20px;max-width:800px;width:100%;max-height:85vh;overflow-y:auto;position:relative}
+.modal-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:1;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text)}
+.modal-sub{font-size:0.85rem;color:var(--text2);margin-top:0.3rem}
+.modal-close{background:var(--surface2);border:1px solid var(--border);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);font-size:1.2rem;flex-shrink:0;transition:all 0.2s}
+.modal-close:hover{border-color:var(--border2);color:var(--text)}
+.modal-body{padding:2rem}
+.modal-section{margin-bottom:2rem}
+.modal-section-title{font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--accent-light);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.8rem}
+.modal-section p{font-size:0.9rem;color:var(--text2);line-height:1.8}
+.modal-section ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.modal-section ul li{font-size:0.9rem;color:var(--text2);padding-left:1rem;position:relative;line-height:1.7}
+.modal-section ul li::before{content:'→';position:absolute;left:0;color:var(--accent-light);font-size:0.8rem}
+.modal-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.modal-metric{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.modal-metric-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--accent-light)}
+.modal-metric-label{font-size:0.72rem;color:var(--text3);margin-top:0.2rem}
+.modal-tools{display:flex;flex-wrap:wrap;gap:0.5rem}
+.modal-tool{background:var(--accent-dim);color:var(--accent-light);font-size:0.78rem;font-family:'JetBrains Mono',monospace;padding:0.3rem 0.8rem;border-radius:100px}
+.modal-footer{padding:1.5rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.github-link{display:flex;align-items:center;gap:0.5rem;color:var(--text2);text-decoration:none;font-size:0.85rem;font-family:'JetBrains Mono',monospace;transition:color 0.2s}
+.github-link:hover{color:var(--accent-light)}
+
+/* MINI PROJECTS */
+.mini-section{background:var(--bg2)}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.mini-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:1.8rem;transition:all 0.25s;position:relative;overflow:hidden}
+.mini-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--teal));opacity:0;transition:opacity 0.3s}
+.mini-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 40px var(--shadow)}
+.mini-card:hover::after{opacity:1}
+.mini-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.2rem;background:var(--accent-dim)}
+.mini-card h4{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;line-height:1.3}
+.mini-stack{font-size:0.75rem;font-family:'JetBrains Mono',monospace;color:var(--accent-light);margin-bottom:0.8rem}
+.mini-card p{font-size:0.87rem;color:var(--text2);line-height:1.7;margin-bottom:1rem}
+.mini-findings{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem}
+.mini-finding{font-size:0.8rem;color:var(--text2);padding:0.35rem 0.6rem;background:var(--bg3);border-radius:6px;border-left:2px solid var(--teal)}
+.mini-link{font-size:0.8rem;color:var(--accent-light);text-decoration:none;font-family:'JetBrains Mono',monospace;transition:color 0.2s}
+.mini-link:hover{color:var(--text)}
+
+/* SKILLS */
+.skills-section{background:var(--bg)}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.skill-group{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:1.8rem}
+.skill-group-header{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.5rem}
+.skill-group-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.95rem}
+.sg-purple{background:rgba(99,102,241,0.15)}
+.sg-teal{background:rgba(20,184,166,0.15)}
+.sg-amber{background:rgba(245,158,11,0.15)}
+.sg-blue{background:rgba(59,130,246,0.15)}
+.skill-group h3{font-size:0.9rem;font-weight:600;color:var(--text)}
+.skill-bars{display:flex;flex-direction:column;gap:0.9rem}
+.skill-bar{display:flex;flex-direction:column;gap:0.35rem}
+.skill-bar-header{display:flex;justify-content:space-between;align-items:center}
+.skill-bar-name{font-size:0.83rem;color:var(--text2)}
+.skill-bar-pct{font-size:0.75rem;font-family:'JetBrains Mono',monospace;color:var(--text3)}
+.skill-bar-track{height:4px;background:var(--bg3);border-radius:100px;overflow:hidden}
+.skill-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--accent),var(--accent-light));width:0;transition:width 1.2s ease}
+.skill-tags-wrap{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem}
+.sk-tag{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.7rem;font-size:0.78rem;color:var(--text2);font-family:'JetBrains Mono',monospace}
+
+/* EXPERIENCE */
+.exp-section{background:var(--bg2)}
+.exp-timeline{position:relative;max-width:800px}
+.exp-timeline::before{content:'';position:absolute;left:16px;top:8px;bottom:0;width:1px;background:var(--border)}
+.exp-item{display:flex;gap:2rem;margin-bottom:3rem;position:relative}
+.exp-dot-wrap{flex-shrink:0;width:33px;display:flex;flex-direction:column;align-items:center;padding-top:4px}
+.exp-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg2);flex-shrink:0}
+.exp-content{flex:1;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.4rem;transition:border-color 0.2s}
+.exp-content:hover{border-color:var(--border2)}
+.exp-date{font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-bottom:0.4rem}
+.exp-role{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.15rem}
+.exp-company{font-size:0.85rem;color:var(--accent-light);margin-bottom:0.8rem}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+.exp-bullets li{font-size:0.85rem;color:var(--text2);padding-left:1rem;position:relative;line-height:1.6}
+.exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent-light);font-size:0.7rem;top:2px}
+
+/* EDUCATION & CERTS */
+.edu-section{background:var(--bg)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem}
+.edu-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.edu-degree{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.3rem}
+.edu-school{font-size:0.88rem;color:var(--accent-light);margin-bottom:0.2rem}
+.edu-meta{font-size:0.78rem;font-family:'JetBrains Mono',monospace;color:var(--text3)}
+.certs-title{font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.2rem}
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.cert-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:border-color 0.2s}
+.cert-card:hover{border-color:var(--border2)}
+.cert-org{font-size:0.7rem;font-family:'JetBrains Mono',monospace;color:var(--accent-light);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.4rem}
+.cert-name{font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:0.2rem;line-height:1.3}
+.cert-date{font-size:0.72rem;color:var(--text3)}
+
+/* PLAYBOOKS */
+.pb-section{background:var(--bg2)}
+.pb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.pb-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.2s}
+.pb-card:hover{border-color:var(--border2)}
+.pb-card.pb-full{grid-column:1/-1}
+.pb-cover{height:120px;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;position:relative}
+.pb-cover-1{background:linear-gradient(135deg,#0f172a,#1e1b4b)}
+.pb-cover-2{background:linear-gradient(135deg,#064e3b,#0c1a35)}
+.pb-cover-3{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.pb-cover-4{background:linear-gradient(135deg,#1c1917,#0c0a09)}
+.pb-cover-5{background:linear-gradient(135deg,#0d1117,#161b22)}
+.pb-cover-icon{font-size:1.5rem;margin-bottom:0.5rem}
+.pb-cover-title{font-size:0.85rem;font-weight:600;color:#fff;line-height:1.3}
+.pb-body{padding:1.2rem 1.2rem 0.5rem}
+.pb-meta{font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-bottom:0.5rem}
+.pb-preview{font-size:0.85rem;color:var(--text2);line-height:1.6;margin-bottom:1rem}
+.pb-toggle{font-size:0.8rem;color:var(--accent-light);border:none;background:none;cursor:pointer;padding:0 0 1rem;font-family:'JetBrains Mono',monospace;transition:color 0.2s}
+.pb-toggle:hover{color:var(--text)}
+.pb-expand{display:none;border-top:1px solid var(--border);padding:1.5rem 1.2rem}
+.pb-expand.open{display:block}
+.pb-article h4{font-size:0.9rem;font-weight:600;color:var(--text);margin:1.2rem 0 0.5rem}
+.pb-article h4:first-child{margin-top:0}
+.pb-article p{font-size:0.87rem;color:var(--text2);line-height:1.8;margin-bottom:0.8rem}
+.pb-article code{font-family:'JetBrains Mono',monospace;font-size:0.8rem;background:var(--surface2);padding:0.15rem 0.4rem;border-radius:4px;color:var(--teal)}
+.pb-article ul{list-style:none;display:flex;flex-direction:column;gap:0.4rem;margin:0.5rem 0 1rem}
+.pb-article ul li{font-size:0.85rem;color:var(--text2);padding-left:1.2rem;position:relative;line-height:1.6}
+.pb-article ul li::before{content:'▸';position:absolute;left:0;color:var(--accent-light);font-size:0.7rem;top:3px}
+.callout{background:var(--accent-dim);border-left:3px solid var(--accent-light);border-radius:0 8px 8px 0;padding:0.8rem 1rem;font-size:0.85rem;color:var(--text);line-height:1.7;margin:1rem 0;font-style:italic}
+
+/* CONTACT */
+.contact-section{background:var(--bg)}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.contact-info h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:0.8rem}
+.contact-info p{font-size:0.9rem;color:var(--text2);line-height:1.8;margin-bottom:1.8rem}
+.contact-links{display:flex;flex-direction:column;gap:0.8rem}
+.contact-link{display:flex;align-items:center;gap:0.8rem;color:var(--text2);text-decoration:none;font-size:0.87rem;transition:color 0.2s}
+.contact-link:hover{color:var(--text)}
+.contact-link-icon{width:32px;height:32px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-family:'JetBrains Mono',monospace;color:var(--text2);flex-shrink:0}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:0.4rem}
+.form-group label{font-size:0.78rem;color:var(--text3);font-family:'JetBrains Mono',monospace}
+.form-group input,.form-group textarea{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.7rem 1rem;color:var(--text);font-size:0.88rem;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;resize:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group textarea{height:120px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text3)}
+
+/* FOOTER */
+footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);background:var(--bg)}
+.footer-left{font-size:0.8rem;color:var(--text3)}
+.footer-right{font-size:0.8rem;color:var(--text3)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-inner{flex-direction:column;gap:2rem;text-align:center}
+  .hero-label{justify-content:center}
+  .hero-stats{justify-content:center}
+  .hero-actions{justify-content:center}
+  .hero-socials{justify-content:center}
+  .flagship-grid,.mini-grid,.pb-grid{grid-template-columns:1fr}
+  .pb-card.pb-full{grid-column:1}
+  .skills-grid,.contact-inner,.edu-grid,.certs-grid{grid-template-columns:1fr}
+  .modal-metrics{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  nav .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Sandeep<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#playbooks">Insights</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()">
+      <span id="theme-icon">☀️</span>
+      <span id="theme-label">Light</span>
+    </button>
+    <a href="#" class="resume-btn" onclick="downloadResume()">↓ Resume</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-photo-wrap">
+      <!-- Replace the div below with an <img> tag once you have your photo -->
+      <!-- <img src="your-photo.jpg" alt="Sandeep"> -->
+      <div class="hero-photo-placeholder">👤</div>
+      <div class="hero-photo-ring"></div>
+    </div>
+    <div class="hero-text">
+      <div class="hero-label">Data Analyst · Gurugram, India</div>
+      <h1 class="hero-name">Sandeep</h1>
+      <p class="hero-title">Aspiring Data Analyst focused on <strong>turning data into business decisions</strong></p>
+      <p class="hero-bio">Fresher building deep expertise across Python, SQL, and Power BI — with hands-on projects in BFSI, e-commerce, and operations analytics. Targeting roles at American Express, EY, KPMG, Fractal Analytics, and leading analytics firms.</p>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-num">5+</span><span class="hstat-label">Projects Built</span></div>
+        <div class="hstat"><span class="hstat-num">3</span><span class="hstat-label">Domains Covered</span></div>
+        <div class="hstat"><span class="hstat-num">SQL</span><span class="hstat-label">+ Python + Power BI</span></div>
+        <div class="hstat"><span class="hstat-num">0→1</span><span class="hstat-label">Ready to Scale</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/" target="_blank" class="hero-social">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          github.com/yourusername
+        </a>
+        <a href="https://linkedin.com/" target="_blank" class="hero-social">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:your@email.com" class="hero-social">
+          ✉ your@email.com
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FLAGSHIP PROJECTS -->
+<section class="flagship-section" id="projects">
+  <div class="section-inner">
+    <div class="section-tag fade-up">Selected Work</div>
+    <h2 class="section-title fade-up">Flagship Projects</h2>
+    <p class="section-sub fade-up">End-to-end analytics work that answered real business questions and delivered measurable outcomes.</p>
+    <div class="flagship-grid">
+
+      <!-- Card 1: Credit Card Fraud Detection — BFSI Flagship -->
+      <div class="proj-card fade-up" onclick="openModal('modal-fraud')">
+        <div class="proj-card-cover">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#064e3b"/></linearGradient></defs>
+            <rect width="400" height="200" fill="url(#g1)"/>
+            <polyline points="40,160 70,140 110,108 160,72 220,48 290,38 360,35" fill="none" stroke="#818cf8" stroke-width="2.5" opacity="0.9"/>
+            <line x1="40" y1="160" x2="360" y2="35" stroke="white" stroke-width="1" stroke-dasharray="4,4" opacity="0.18"/>
+            <rect x="215" y="95" width="100" height="28" rx="5" fill="rgba(99,102,241,0.25)" stroke="#6366f1" stroke-width="1"/>
+            <text x="265" y="113" text-anchor="middle" font-family="Inter" font-size="11" fill="#818cf8" font-weight="bold">AUC-ROC 0.977</text>
+            <circle cx="160" cy="72" r="4" fill="#f59e0b" opacity="0.9"/>
+            <circle cx="220" cy="48" r="3" fill="#ef4444" opacity="0.8"/>
+            <text x="200" y="20" text-anchor="middle" font-family="Inter" font-size="11" fill="white" opacity="0.5">Credit Card Fraud · 284K Transactions</text>
+          </svg>
+          <div class="proj-card-badge">🏆 BFSI Flagship</div>
+        </div>
+        <div class="proj-card-body">
+          <h3>Credit Card Fraud Detection & Risk Analytics</h3>
+          <div class="proj-impact">Caught 88.8% of fraud — $12,750 net saving vs no-model baseline</div>
+          <div class="proj-metrics">
+            <div class="proj-metric">XGBoost + SHAP on 284K transactions — AUC-ROC 0.977, F1 0.849</div>
+            <div class="proj-metric">Fraud peaks at 2–4am; 70%+ under $100 — card-testing pattern via SQL</div>
+            <div class="proj-metric">Cost-optimised threshold (0.09): $12,750 saved vs default model setup</div>
+          </div>
+          <div class="proj-tech"><span class="tech-pill">Python</span><span class="tech-pill">XGBoost</span><span class="tech-pill">SHAP</span><span class="tech-pill">MySQL</span><span class="tech-pill">Tableau</span><span class="tech-pill">SMOTE</span></div>
+          <button class="view-btn">View Project →</button>
+        </div>
+      </div>
+
+      <!-- Card 2: Customer360 Analytics Pipeline -->
+      <div class="proj-card fade-up" onclick="openModal('modal-customer360')">
+        <div class="proj-card-cover">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e1b4b"/></linearGradient></defs>
+            <rect width="400" height="200" fill="url(#g2)"/>
+            <rect x="25" y="82" width="62" height="36" rx="6" fill="rgba(99,102,241,0.25)" stroke="#6366f1" stroke-width="1"/>
+            <text x="56" y="97" text-anchor="middle" font-family="Inter" font-size="9" fill="#818cf8">Python</text>
+            <text x="56" y="110" text-anchor="middle" font-family="Inter" font-size="8" fill="white" opacity="0.6">5 phases</text>
+            <line x1="87" y1="100" x2="110" y2="100" stroke="#818cf8" stroke-width="1.5"/>
+            <polygon points="108,96 116,100 108,104" fill="#818cf8"/>
+            <rect x="116" y="82" width="62" height="36" rx="6" fill="rgba(20,184,166,0.2)" stroke="#14b8a6" stroke-width="1"/>
+            <text x="147" y="97" text-anchor="middle" font-family="Inter" font-size="9" fill="#14b8a6">MySQL</text>
+            <text x="147" y="110" text-anchor="middle" font-family="Inter" font-size="8" fill="white" opacity="0.6">7 views</text>
+            <line x1="178" y1="100" x2="202" y2="100" stroke="#14b8a6" stroke-width="1.5"/>
+            <polygon points="200,96 208,100 200,104" fill="#14b8a6"/>
+            <rect x="208" y="82" width="62" height="36" rx="6" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="1"/>
+            <text x="239" y="97" text-anchor="middle" font-family="Inter" font-size="9" fill="#f59e0b">Tableau</text>
+            <text x="239" y="110" text-anchor="middle" font-family="Inter" font-size="8" fill="white" opacity="0.6">6 sheets</text>
+            <circle cx="330" cy="72" r="13" fill="#6366f1" opacity="0.18" stroke="#6366f1" stroke-width="1"/>
+            <circle cx="355" cy="95" r="9" fill="#14b8a6" opacity="0.18" stroke="#14b8a6" stroke-width="1"/>
+            <circle cx="324" cy="118" r="11" fill="#f59e0b" opacity="0.18" stroke="#f59e0b" stroke-width="1"/>
+            <text x="200" y="20" text-anchor="middle" font-family="Inter" font-size="11" fill="white" opacity="0.5">Customer 360 · 1,197 Golden Records</text>
+          </svg>
+          <div class="proj-card-badge">🏆 Flagship</div>
+        </div>
+        <div class="proj-card-body">
+          <h3>Customer 360 Analytics Pipeline</h3>
+          <div class="proj-impact">112 Champions drive 50.9% of revenue — $247K CLTV at churn risk</div>
+          <div class="proj-metrics">
+            <div class="proj-metric">Identity resolution via fuzzy matching + Union-Find on 1,200 customers</div>
+            <div class="proj-metric">5-segment RFM + K-Means; 35 KPI features per customer; CLTV modelling</div>
+            <div class="proj-metric">Pareto CTE confirmed top 9.4% customers = 50.9% revenue — actionable</div>
+          </div>
+          <div class="proj-tech"><span class="tech-pill">Python</span><span class="tech-pill">MySQL</span><span class="tech-pill">Tableau</span><span class="tech-pill">RFM</span><span class="tech-pill">CLTV</span><span class="tech-pill">K-Means</span></div>
+          <button class="view-btn">View Project →</button>
+        </div>
+      </div>
+
+      <!-- Card 3: A/B Test Marketing Campaign -->
+      <div class="proj-card fade-up" onclick="openModal('modal-abtest')">
+        <div class="proj-card-cover">
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1c1a2e"/></linearGradient></defs>
+            <rect width="400" height="200" fill="url(#g3)"/>
+            <rect x="60" y="88" width="48" height="72" rx="4" fill="#6366f1" opacity="0.55"/>
+            <text x="84" y="83" text-anchor="middle" font-family="Inter" font-size="10" fill="white" opacity="0.7">1.79%</text>
+            <text x="84" y="175" text-anchor="middle" font-family="Inter" font-size="9" fill="#818cf8">Control</text>
+            <rect x="128" y="58" width="48" height="102" rx="4" fill="#818cf8" opacity="0.85"/>
+            <text x="152" y="53" text-anchor="middle" font-family="Inter" font-size="10" fill="white">2.55%</text>
+            <text x="152" y="175" text-anchor="middle" font-family="Inter" font-size="9" fill="#818cf8">Ad Group</text>
+            <line x1="185" y1="78" x2="225" y2="78" stroke="#14b8a6" stroke-width="2"/>
+            <polygon points="223,73 233,78 223,83" fill="#14b8a6"/>
+            <rect x="236" y="62" width="112" height="32" rx="5" fill="rgba(20,184,166,0.15)" stroke="#14b8a6" stroke-width="1"/>
+            <text x="292" y="81" text-anchor="middle" font-family="Inter" font-size="13" fill="#14b8a6" font-weight="bold">+43% lift</text>
+            <text x="292" y="118" text-anchor="middle" font-family="Inter" font-size="10" fill="white" opacity="0.5">p &lt; 0.0001</text>
+            <text x="200" y="20" text-anchor="middle" font-family="Inter" font-size="11" fill="white" opacity="0.5">A/B Test · 588K Users · Causal Inference</text>
+          </svg>
+          <div class="proj-card-badge">🏆 Flagship</div>
+        </div>
+        <div class="proj-card-body">
+          <h3>A/B Test — Marketing Campaign Effectiveness</h3>
+          <div class="proj-impact">Confirmed 43% relative conversion lift with causal inference on 588K users</div>
+          <div class="proj-metrics">
+            <div class="proj-metric">Chi-Square (p &lt; 0.0001) + 95% CI fully above zero — statistically bulletproof</div>
+            <div class="proj-metric">Diff-in-Differences isolated +1.46pp true causal ad effect beyond correlation</div>
+            <div class="proj-metric">Day/hour/exposure segmentation → scheduling recommendations delivered</div>
+          </div>
+          <div class="proj-tech"><span class="tech-pill">Python</span><span class="tech-pill">SciPy</span><span class="tech-pill">Seaborn</span><span class="tech-pill">Tableau</span><span class="tech-pill">A/B Testing</span><span class="tech-pill">DiD</span></div>
+          <button class="view-btn">View Project →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DOMAIN ANALYTICS (MINI PROJECTS) -->
+<section class="mini-section" id="domain">
+  <div class="section-inner">
+    <div class="section-tag fade-up">Analytical Deep Dives</div>
+    <h2 class="section-title fade-up">Domain Analytics</h2>
+    <p class="section-sub fade-up">Focused analytical studies across healthcare, global finance, and operations data.</p>
+    <div class="mini-grid">
+
+      <div class="mini-card fade-up">
+        <div class="mini-icon">🛒</div>
+        <h4>Superstore End-to-End Sales Analytics</h4>
+        <div class="mini-stack">Python · MySQL · Power BI · Looker Studio · K-Means</div>
+        <p>7-phase analytics pipeline on 9,994 orders — EDA, 10 SQL window function queries, A/B testing (Mann-Whitney U), K-Means segmentation, and dual dashboards in Power BI and Looker Studio.</p>
+        <div class="mini-findings">
+          <div class="mini-finding">Tables sub-category: net loss in every region every year</div>
+          <div class="mini-finding">Discounted orders: −40.6% to −43.7pp margin (Bootstrap CI)</div>
+          <div class="mini-finding">Champions = 25% of customers; Q4 = 35% of annual sales</div>
+        </div>
+        <a href="https://github.com/sandeepsingh9871/Superstore-Sales-Analytics" target="_blank" class="mini-link">View on GitHub →</a>
+      </div>
+
+      <div class="mini-card fade-up">
+        <div class="mini-icon">🏥</div>
+        <h4>30-Day Hospital Readmission Risk Prediction</h4>
+        <div class="mini-stack">Python · Scikit-learn · Healthcare Analytics</div>
+        <p>End-to-end ML pipeline predicting 30-day hospital readmission risk — feature engineering on patient demographics, diagnosis codes, and prior admission history with clinical business recommendations.</p>
+        <div class="mini-findings">
+          <div class="mini-finding">Prior admission count is strongest readmission predictor</div>
+          <div class="mini-finding">Diabetic patients: highest 30-day readmission rate</div>
+          <div class="mini-finding">Model intervention saved projected cost per false negative</div>
+        </div>
+        <a href="https://github.com/sandeepsingh9871/30-Day-Hospital-Readmission-Risk-Prediction" target="_blank" class="mini-link">View on GitHub →</a>
+      </div>
+
+      <div class="mini-card fade-up">
+        <div class="mini-icon">📊</div>
+        <h4>Live Tableau & Looker Studio Dashboards</h4>
+        <div class="mini-stack">Tableau Public · Looker Studio · Power BI</div>
+        <p>Published interactive dashboards across all flagship projects — fraud monitoring with risk bands, Customer 360 RFM scatter, A/B test segmentation, and Superstore P&L with real-time filters.</p>
+        <div class="mini-findings">
+          <div class="mini-finding">Fraud dashboard: 4 views with risk tier drill-through</div>
+          <div class="mini-finding">Customer360: 6 live MySQL-connected Tableau sheets</div>
+          <div class="mini-finding">Superstore: Looker Studio live, no login required</div>
+        </div>
+        <a href="https://github.com/sandeepsingh9871" target="_blank" class="mini-link">View All Repos →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-inner">
+    <div class="section-tag fade-up">Technical Proficiency</div>
+    <h2 class="section-title fade-up">Skills &amp; Tools</h2>
+    <p class="section-sub fade-up">A full-stack analytics toolkit — from raw data to executive dashboard.</p>
+    <div class="skills-grid">
+
+      <div class="skill-group fade-up">
+        <div class="skill-group-header">
+          <div class="skill-group-icon sg-purple">🖥️</div>
+          <h3>Languages & Query</h3>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">SQL (MySQL, PostgreSQL)</span><span class="skill-bar-pct">88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Python (Pandas, NumPy, Seaborn)</span><span class="skill-bar-pct">78%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Advanced SQL (CTEs, Window Functions)</span><span class="skill-bar-pct">82%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82%"></div></div>
+          </div>
+        </div>
+        <div class="skill-tags-wrap">
+          <span class="sk-tag">CTEs</span><span class="sk-tag">Subqueries</span><span class="sk-tag">Matplotlib</span><span class="sk-tag">Scikit-learn</span>
+        </div>
+      </div>
+
+      <div class="skill-group fade-up">
+        <div class="skill-group-header">
+          <div class="skill-group-icon sg-teal">📊</div>
+          <h3>BI & Visualization</h3>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Power BI (DAX, Power Query)</span><span class="skill-bar-pct">85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Tableau / Looker Studio</span><span class="skill-bar-pct">70%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Advanced Excel</span><span class="skill-bar-pct">80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div>
+          </div>
+        </div>
+        <div class="skill-tags-wrap">
+          <span class="sk-tag">Dashboard Design</span><span class="sk-tag">KPI Design</span><span class="sk-tag">Stakeholder Reporting</span>
+        </div>
+      </div>
+
+      <div class="skill-group fade-up">
+        <div class="skill-group-icon sg-amber" style="display:none"></div>
+        <div class="skill-group-header">
+          <div class="skill-group-icon sg-amber">☁️</div>
+          <h3>Analytics Methods</h3>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Funnel & Cohort Analysis</span><span class="skill-bar-pct">90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">RFM & Customer Segmentation</span><span class="skill-bar-pct">85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">A/B Testing & EDA</span><span class="skill-bar-pct">75%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75%"></div></div>
+          </div>
+        </div>
+        <div class="skill-tags-wrap">
+          <span class="sk-tag">Root Cause Analysis</span><span class="sk-tag">Churn Analysis</span><span class="sk-tag">KPI Tracking</span>
+        </div>
+      </div>
+
+      <div class="skill-group fade-up">
+        <div class="skill-group-header">
+          <div class="skill-group-icon sg-blue">🏦</div>
+          <h3>BFSI Domain Knowledge</h3>
+        </div>
+        <div class="skill-bars">
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Credit Risk & NPA Analysis</span><span class="skill-bar-pct">80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Financial KPI Dashboards</span><span class="skill-bar-pct">82%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82%"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span class="skill-bar-name">Insurance & Claims Analytics</span><span class="skill-bar-pct">72%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="72%"></div></div>
+          </div>
+        </div>
+        <div class="skill-tags-wrap">
+          <span class="sk-tag">CASA Ratio</span><span class="sk-tag">LTV Analysis</span><span class="sk-tag">Risk Scoring</span><span class="sk-tag">Financial Modeling</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="section-inner">
+    <div class="section-tag fade-up">Background</div>
+    <h2 class="section-title fade-up">Experience</h2>
+    <div class="exp-timeline fade-up">
+
+      <div class="exp-item">
+        <div class="exp-dot-wrap"><div class="exp-dot"></div></div>
+        <div class="exp-content">
+          <div class="exp-date">2024 — Present</div>
+          <div class="exp-role">Data Analytics Projects & Self-Study</div>
+          <div class="exp-company">Independent / Portfolio Building</div>
+          <ul class="exp-bullets">
+            <li>Built 5+ end-to-end analytics projects spanning BFSI, FMCG, and healthcare domains</li>
+            <li>Developed Python → SQL → Power BI workflow for data cleaning, analysis, and dashboarding</li>
+            <li>Designed ATS-optimized resume targeting top analytics firms including Fractal, EXL, and ZS</li>
+            <li>Completed n8n automation pipeline for job-description-to-resume tailoring</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot-wrap"><div class="exp-dot"></div></div>
+        <div class="exp-content">
+          <div class="exp-date">Add your internship / part-time role here</div>
+          <div class="exp-role">Data Analyst Intern / Trainee</div>
+          <div class="exp-company">Company Name</div>
+          <ul class="exp-bullets">
+            <li>Replace this with your actual internship bullets</li>
+            <li>Quantify every outcome: "Reduced report time by 40% via automated SQL queries"</li>
+            <li>Use BFSI vocabulary if relevant: NPA, CASA, LTV, churn rate, credit score</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION & CERTS -->
+<section class="edu-section" id="edu">
+  <div class="section-inner">
+    <div class="section-tag fade-up">Background</div>
+    <h2 class="section-title fade-up">Education &amp; Certifications</h2>
+    <div class="edu-grid fade-up">
+      <div class="edu-card">
+        <div class="edu-degree">B.Tech / BCA / Your Degree</div>
+        <div class="edu-school">Your University Name</div>
+        <div class="edu-meta">Graduating Year · GPA X.X/10</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Add Second Degree or Course</div>
+        <div class="edu-school">Institution Name</div>
+        <div class="edu-meta">Year · Status</div>
+      </div>
+    </div>
+
+    <div class="certs-title">Certifications</div>
+    <div class="certs-grid fade-up">
+      <div class="cert-card">
+        <div class="cert-org">Google</div>
+        <div class="cert-name">Data Analytics Professional Certificate</div>
+        <div class="cert-date">2024</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-org">Microsoft</div>
+        <div class="cert-name">Power BI Data Analyst (PL-300)</div>
+        <div class="cert-date">Add your cert date</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-org">HackerRank</div>
+        <div class="cert-name">SQL (Intermediate) Certification</div>
+        <div class="cert-date">2024</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-org">Coursera / Udemy</div>
+        <div class="cert-name">Python for Data Analysis</div>
+        <div class="cert-date">2024</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-org">Add Org</div>
+        <div class="cert-name">Your 5th Certification Here</div>
+        <div class="cert-date">Date</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-org">Add Org</div>
+        <div class="cert-name">Your 6th Certification Here</div>
+        <div class="cert-date">Date</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PLAYBOOKS / INSIGHTS -->
+<section class="pb-section" id="playbooks">
+  <div class="section-inner">
+    <div class="section-tag fade-up">Analytical Thinking</div>
+    <h2 class="section-title fade-up">Insights &amp; Playbooks</h2>
+    <p class="section-sub fade-up">How I think about data problems — frameworks I've built through projects.</p>
+    <div class="pb-grid fade-up">
+
+      <div class="pb-card">
+        <div class="pb-cover pb-cover-1"><div class="pb-cover-icon">🏦</div><div class="pb-cover-title">Why BFSI Data is Different — And How to Crack It</div></div>
+        <div class="pb-body">
+          <div class="pb-meta">5 min read · BFSI · SQL · Risk Analytics</div>
+          <div class="pb-preview">The vocabulary, metrics, and mental models you need before walking into a banking analytics interview.</div>
+          <button class="pb-toggle" onclick="togglePB('pb1',this)">Read article →</button>
+        </div>
+        <div class="pb-expand" id="pb1">
+          <div class="pb-article">
+            <h4>The BFSI analyst mindset</h4>
+            <p>BFSI data isn't harder — it's differently shaped. The tables are wider, the stakes are regulatory, and every metric has a formula with a banking council behind it. The faster you speak the language, the faster you get trusted with real analysis.</p>
+            <div class="callout">You don't need to know everything about banking. You need to know how to move from "data" to "risk implication" — that's the job.</div>
+            <h4>The 5 metrics every BFSI analyst must know</h4>
+            <p>NPA Ratio, CASA Ratio, Credit-to-Deposit Ratio, NIM (Net Interest Margin), and LGD (Loss Given Default). These aren't jargon — they're the KPIs your dashboards will track from day one at AmEx, KPMG, or EY FSO.</p>
+            <h4>Credit risk is mispricing risk</h4>
+            <p>In my loan analysis project, Grade A borrowers — lowest rates, highest perceived quality — had the highest default rate at 18%. Classic mispriced risk. The analysis that matters isn't "who defaulted" but "who was priced wrong."</p>
+            <div class="callout">The most dangerous loan on a bank's book isn't the one in the high-risk tier. It's the one in the low-risk tier that's about to default.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb-card">
+        <div class="pb-cover pb-cover-2"><div class="pb-cover-icon">📊</div><div class="pb-cover-title">SQL Window Functions: The One Skill That Separates Junior from Mid-Level</div></div>
+        <div class="pb-body">
+          <div class="pb-meta">6 min read · SQL · Analytics Engineering</div>
+          <div class="pb-preview">ROW_NUMBER, RANK, LAG, LEAD — most tutorials show syntax. Here's when and why to use each one.</div>
+          <button class="pb-toggle" onclick="togglePB('pb2',this)">Read article →</button>
+        </div>
+        <div class="pb-expand" id="pb2">
+          <div class="pb-article">
+            <h4>Why window functions matter</h4>
+            <p>You can solve most business questions with GROUP BY. But once you need to compare a row to its neighbors — running totals, period-over-period growth, ranking within groups — GROUP BY breaks down. Window functions are the upgrade.</p>
+            <h4>The four families</h4>
+            <p><code>ROW_NUMBER()</code> for deduplication. <code>RANK()</code> / <code>DENSE_RANK()</code> for leaderboards. <code>LAG()</code> / <code>LEAD()</code> for period comparison. <code>SUM() OVER()</code> for running totals. Each solves a different class of problem.</p>
+            <h4>Real use: month-over-month revenue</h4>
+            <p>Instead of two subqueries and a JOIN, one window expression: <code>LAG(revenue, 1) OVER (PARTITION BY region ORDER BY month)</code> gives you last month's revenue on the same row. Clean, readable, fast.</p>
+            <div class="callout">Every analytics interview at Fractal, EXL, or Mu Sigma will test window functions. Not because they're hard — because they're the most useful thing a mid-level analyst does every day.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb-card">
+        <div class="pb-cover pb-cover-3"><div class="pb-cover-icon">🔍</div><div class="pb-cover-title">How to Turn EDA Findings into Business Recommendations</div></div>
+        <div class="pb-body">
+          <div class="pb-meta">4 min read · EDA · Storytelling · Python</div>
+          <div class="pb-preview">The gap between "I found something interesting" and "here's what the business should do" is where most junior analysts stop.</div>
+          <button class="pb-toggle" onclick="togglePB('pb3',this)">Read article →</button>
+        </div>
+        <div class="pb-expand" id="pb3">
+          <div class="pb-article">
+            <h4>Findings vs. implications</h4>
+            <p>A finding is "smokers have 3.8× higher claim costs." An implication is "risk-based premium adjustment for smokers could reduce loss ratio by 12pp." The second one gets acted on. Train yourself to always translate findings into dollar/percentage implications.</p>
+            <div class="callout">Stakeholders don't care about your correlation coefficient. They care about what it means for next quarter's numbers.</div>
+            <h4>The four-sentence recommendation framework</h4>
+            <p>What you found. Why it matters in business terms. What should change. What the expected outcome is. Every EDA slide should close with this structure. It's what separates a data analyst from a data reporter.</p>
+            <h4>Apply it to your portfolio</h4>
+            <p>Go back to your last project. Find every insight. Add a "therefore" sentence after each one. If you can't write the therefore, you haven't finished the analysis. This is what interviewers at ZS, Deloitte, and KPMG are testing in case presentations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb-card pb-full">
+        <div class="pb-cover pb-cover-4"><div class="pb-cover-icon">🎯</div><div class="pb-cover-title">The Fresher's Guide to Breaking Into Analytics — What Actually Works in 2025</div></div>
+        <div class="pb-body">
+          <div class="pb-meta">8 min read · Career · Portfolio · Job Search</div>
+          <div class="pb-preview">The exact stack, project types, and positioning that gets 0-year candidates into Fractal, EXL, and Big 4 analytics teams.</div>
+          <button class="pb-toggle" onclick="togglePB('pb4',this)">Read article →</button>
+        </div>
+        <div class="pb-expand" id="pb4">
+          <div class="pb-article">
+            <h4>The stack that actually gets interviews</h4>
+            <p>Python for EDA. SQL for business queries. Power BI for storytelling. In that order. Most freshers reverse it and wonder why their resume gets filtered. ATS systems at Fractal, EXL, and Big 4 firms scan for Python + SQL as a paired keyword cluster — both need to appear in context.</p>
+            <div class="callout">You don't need 10 projects. You need 3 projects where you can clearly explain the business problem, the method, and the recommendation. Depth beats breadth at every analytics interview.</div>
+            <h4>Domain is the differentiator</h4>
+            <p>BFSI vocabulary sets you apart for AmEx, KPMG FSO, and EY. FMCG/retail vocabulary works for Mu Sigma, Tiger Analytics, and ZS. Pick one domain, build two projects in it, and learn the KPIs cold. "I worked on a credit risk project" + knowing what NPA ratio means = serious candidate.</p>
+            <h4>What interviewers actually test</h4>
+            <p>SQL window functions (every firm). Python pandas operations (Fractal, EXL). One full project walkthrough from problem to insight (Big 4). ATS parsing of your resume (all automated first screens). None of these require experience — they require deliberate preparation.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-tag fade-up">Get In Touch</div>
+    <h2 class="section-title fade-up">Let's Work Together</h2>
+    <div class="contact-inner fade-up">
+      <div class="contact-info">
+        <h3>Open to opportunities</h3>
+        <p>Looking for data analyst roles in BFSI and analytics — at firms like American Express, EY, KPMG, Fractal Analytics, EXL, and ZS Associates. Open to full-time positions and analytics trainee programs.</p>
+        <div class="contact-links">
+          <a href="mailto:your@email.com" class="contact-link"><div class="contact-link-icon">✉</div>your@email.com</a>
+          <a href="https://linkedin.com/" target="_blank" class="contact-link"><div class="contact-link-icon">in</div>linkedin.com/in/yourprofile</a>
+          <a href="https://github.com/" target="_blank" class="contact-link"><div class="contact-link-icon">gh</div>github.com/yourusername</a>
+          <a href="tel:+91XXXXXXXXXX" class="contact-link"><div class="contact-link-icon">📞</div>+91 XXXXX XXXXX</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+        </div>
+        <div class="form-group"><label>Subject</label><input type="text" placeholder="What's this about?"></div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Tell me about the opportunity..."></textarea></div>
+        <button class="btn-primary" style="width:100%">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">© 2025 Sandeep · Data Analyst</div>
+  <div class="footer-right">Gurugram, India · Available for opportunities</div>
+</footer>
+
+<!-- ===== PROJECT MODALS ===== -->
+
+<!-- Credit Card Fraud Modal -->
+<div class="modal-overlay" id="modal-fraud" onclick="closeModalOutside(event,'modal-fraud')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Credit Card Fraud Detection & Risk Analytics</div><div class="modal-sub">Python · XGBoost · SHAP · MySQL · Tableau · 284K Transactions</div></div>
+      <button class="modal-close" onclick="closeModal('modal-fraud')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="modal-metric-num">0.977</div><div class="modal-metric-label">AUC-ROC score</div></div>
+        <div class="modal-metric"><div class="modal-metric-num">88.8%</div><div class="modal-metric-label">Fraud recall rate</div></div>
+        <div class="modal-metric"><div class="modal-metric-num">$12,750</div><div class="modal-metric-label">Net saving vs no model</div></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Problem Statement</div>
+        <p>Build a fraud detection system on 284,807 real credit card transactions with a 577:1 class imbalance. The business goal was not just accuracy — it was minimising the total cost of wrong decisions: false negatives (missed fraud at $150 each) vs false positives (blocked legitimate transactions at $15 each).</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">8-Phase Pipeline</div>
+        <ul>
+          <li>Phase 1 — MySQL SQL analysis: 5 queries, fraud rate by hour, card-testing pattern in amount buckets, 3 reusable views</li>
+          <li>Phase 2 — EDA: 8 charts; V14, V17, V12 are strongest predictors (correlation confirmed later by SHAP)</li>
+          <li>Phase 3 — Feature engineering: 8 new features including is_night, txn_velocity_1h, cyclical time encoding</li>
+          <li>Phase 4 — Imbalance: scale_pos_weight=577 beat SMOTE on AUC-PR (0.880 vs 0.858)</li>
+          <li>Phase 5 — XGBoost + GridSearchCV, 5-fold stratified CV, AUC-PR as scoring metric</li>
+          <li>Phase 6 — SHAP explainability: 6 charts including waterfall plots for individual fraud/legit decisions</li>
+          <li>Phase 7 — Business ROI: cost matrix analysis, threshold optimisation at 0.09 (not default 0.5)</li>
+          <li>Phase 8 — Tableau dashboard: 4 interactive views with risk band drill-through</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Key Insights</div>
+        <ul>
+          <li>Fraud peaks at 2–4am — low-monitoring window; scheduling alerts to this period reduces FN cost</li>
+          <li>70%+ of fraud is under $100 — classic card-testing pattern confirmed by SQL bucketing</li>
+          <li>V14 and V17 top both correlation analysis and SHAP rankings — consistent signal throughout the pipeline</li>
+          <li>Threshold 0.09 (cost-optimised) saved $12,750 vs no model; default 0.5 threshold leaves $765 on the table</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Tools Used</div>
+        <div class="modal-tools"><span class="modal-tool">Python</span><span class="modal-tool">XGBoost</span><span class="modal-tool">SHAP</span><span class="modal-tool">SMOTE</span><span class="modal-tool">MySQL</span><span class="modal-tool">Tableau</span><span class="modal-tool">GridSearchCV</span><span class="modal-tool">Scikit-learn</span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="https://github.com/sandeepsingh9871/Credit-Card-Fraud-Detection-Transaction-Risk-Analytics" target="_blank" class="github-link">↗ View on GitHub</a>
+      <button class="btn-primary" onclick="closeModal('modal-fraud')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Customer360 Modal -->
+<div class="modal-overlay" id="modal-customer360" onclick="closeModalOutside(event,'modal-customer360')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">Customer 360 Analytics Pipeline</div><div class="modal-sub">Python → MySQL → Tableau · Identity Resolution · RFM · CLTV</div></div>
+      <button class="modal-close" onclick="closeModal('modal-customer360')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="modal-metric-num">1,197</div><div class="modal-metric-label">Golden records produced</div></div>
+        <div class="modal-metric"><div class="modal-metric-num">50.9%</div><div class="modal-metric-label">Revenue from top 9.4%</div></div>
+        <div class="modal-metric"><div class="modal-metric-num">$247K</div><div class="modal-metric-label">CLTV at churn risk</div></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Problem Statement</div>
+        <p>Large enterprises accumulate the same customer as multiple fragmented records across web, mobile, CRM, and in-store channels — inflating customer counts, distorting CLTV calculations, and preventing meaningful segmentation. Starting from 2,000 sessions across 1,200 customers, 44 near-duplicate pairs were identified (3.7% near-dupe rate) that would distort every downstream metric if unresolved.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">5-Phase Pipeline</div>
+        <ul>
+          <li>Phase 1 — Load & clean: channel consolidation (5 → 3), datetime parsing, revenue and session duration engineering</li>
+          <li>Phase 2 — Identity resolution: blocking on last_name[:3]+city[:4], fuzzy scoring (rapidfuzz), Union-Find merging — 44 pairs resolved into 1,197 golden records</li>
+          <li>Phase 3 — 35 KPI features: RFM, CLTV (24-month proxy), churn flag, engagement score (0–100) per customer</li>
+          <li>Phase 4 — K-Means (k=5, elbow + silhouette), RFM scoring via percentile ranks, CRM action mapped per segment</li>
+          <li>Phase 5 — 6 MySQL tables written via SQLAlchemy; 7 analytical views including Pareto, cohort retention, cross-sell funnel; stored procedures for dynamic churn refresh</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Key SQL Queries</div>
+        <ul>
+          <li>Pareto CTE with running SUM() OVER — confirmed top 9.4% drive 50.9% revenue</li>
+          <li>Cohort retention heatmap with PARTITION BY signup_month — identifies best-performing acquisition cohorts</li>
+          <li>Cross-sell funnel: 1,197 → 718 active → 479 high-CLTV → 148 Promising → 112 Champions</li>
+          <li>CLTV ranking: RANK(), NTILE(10), PERCENT_RANK(), segment-relative ranking in one query</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Tools Used</div>
+        <div class="modal-tools"><span class="modal-tool">Python</span><span class="modal-tool">Pandas</span><span class="modal-tool">rapidfuzz</span><span class="modal-tool">MySQL</span><span class="modal-tool">SQLAlchemy</span><span class="modal-tool">Tableau</span><span class="modal-tool">K-Means</span><span class="modal-tool">CLTV</span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="https://github.com/sandeepsingh9871/Customer360-Analytics-Pipeline" target="_blank" class="github-link">↗ View on GitHub</a>
+      <button class="btn-primary" onclick="closeModal('modal-customer360')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- A/B Test Modal -->
+<div class="modal-overlay" id="modal-abtest" onclick="closeModalOutside(event,'modal-abtest')">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">A/B Test — Marketing Campaign Effectiveness</div><div class="modal-sub">Python · SciPy · Seaborn · Tableau · 588K Users · Causal Inference</div></div>
+      <button class="modal-close" onclick="closeModal('modal-abtest')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-metrics">
+        <div class="modal-metric"><div class="modal-metric-num">+43%</div><div class="modal-metric-label">Relative conversion lift</div></div>
+        <div class="modal-metric"><div class="modal-metric-num">&lt;0.0001</div><div class="modal-metric-label">p-value (Chi-Square)</div></div>
+        <div class="modal-metric"><div class="modal-metric-num">+1.46pp</div><div class="modal-metric-label">Causal DiD effect</div></div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Problem Statement</div>
+        <p>An e-commerce company ran a digital marketing campaign and wanted to know whether showing users an ad actually caused more conversions — or whether those users would have purchased anyway. Two groups: Test (Ad, 564K users) vs Control (PSA, 23K users). Goal: isolate the true causal effect, not just correlation.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">10-Step Analysis</div>
+        <ul>
+          <li>Data loading, null check, group distribution — 588,101 users, zero nulls</li>
+          <li>Descriptive stats: Ad group 2.5547% vs PSA 1.7854% conversion — 0.7693pp absolute lift</li>
+          <li>Chi-Square test: χ² = 54.006, p &lt; 0.0001, df = 1 — reject H₀ at 99.99%+ confidence</li>
+          <li>95% CI: [+0.5951%, +0.9434%] — entire interval above zero, no ambiguity</li>
+          <li>Cohen's h = 0.053 (small effect), statistical power = 100%</li>
+          <li>Segmentation by day of week, hour of day, and ad exposure quartile</li>
+          <li>Difference-in-Differences causal inference using exposure quartiles as time proxy</li>
+          <li>DiD result: +1.4559pp true causal effect after controlling for pre-existing trends</li>
+          <li>4 publication-quality Seaborn visualisations</li>
+          <li>Live Tableau dashboard published to Tableau Public</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Business Recommendations</div>
+        <ul>
+          <li>Scale the ad campaign — causally confirmed at 99.99%+ confidence, not just correlated</li>
+          <li>Optimise scheduling to peak-conversion windows identified in the day/hour segmentation</li>
+          <li>Set frequency cap at Q4 exposure level — monitor for fatigue beyond this threshold</li>
+          <li>Maintain 5% control group continuously to track lift sustainability as campaign matures</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Tools Used</div>
+        <div class="modal-tools"><span class="modal-tool">Python</span><span class="modal-tool">Pandas</span><span class="modal-tool">SciPy</span><span class="modal-tool">Seaborn</span><span class="modal-tool">Tableau</span><span class="modal-tool">Chi-Square</span><span class="modal-tool">Difference-in-Differences</span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="https://github.com/sandeepsingh9871/A-B-Test-Analysis-Marketing-Campaign" target="_blank" class="github-link">↗ View on GitHub</a>
+      <button class="btn-primary" onclick="closeModal('modal-abtest')">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('theme-icon').textContent = isDark ? '🌙' : '☀️';
+  document.getElementById('theme-label').textContent = isDark ? 'Dark' : 'Light';
+}
+
+// Resume download
+function downloadResume() {
+  alert('Link your resume PDF here — replace this alert with: window.open("your-resume.pdf")');
+}
+
+// Modal
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e, id) {
+  if(e.target === document.getElementById(id)) closeModal(id);
+}
+
+// Playbook toggle
+function togglePB(id, btn) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open', !isOpen);
+  btn.textContent = isOpen ? 'Read article →' : 'Close ←';
+}
+
+// Scroll fade-up
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Animate skill bars when visible
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        const w = bar.getAttribute('data-width');
+        if(w) bar.style.width = w;
+      });
+    }
+  });
+}, {threshold: 0.2});
+document.querySelectorAll('.skill-group').forEach(el => skillObs.observe(el));
+
+// ESC to close modal
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+});
+</script>
+</body>
+</html>
