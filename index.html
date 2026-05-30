@@ -224,35 +224,47 @@ section{padding:6rem 5%}
 .cert-name{font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:0.2rem;line-height:1.3}
 .cert-date{font-size:0.72rem;color:var(--text3)}
 
-/* PLAYBOOKS */
+/* PLAYBOOKS — vertical accordion, no grid mismatch */
 .pb-section{background:var(--bg2)}
-.pb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.pb-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.2s}
+.pb-list{display:flex;flex-direction:column;gap:1rem}
+.pb-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.25s}
 .pb-card:hover{border-color:var(--border2)}
-.pb-card.pb-full{grid-column:1/-1}
-.pb-cover{height:120px;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;position:relative}
-.pb-cover-1{background:linear-gradient(135deg,#0f172a,#1e1b4b)}
-.pb-cover-2{background:linear-gradient(135deg,#064e3b,#0c1a35)}
-.pb-cover-3{background:linear-gradient(135deg,#1a1a2e,#16213e)}
-.pb-cover-4{background:linear-gradient(135deg,#1c1917,#0c0a09)}
-.pb-cover-5{background:linear-gradient(135deg,#0d1117,#161b22)}
-.pb-cover-icon{font-size:1.5rem;margin-bottom:0.5rem}
-.pb-cover-title{font-size:0.85rem;font-weight:600;color:#fff;line-height:1.3}
-.pb-body{padding:1.2rem 1.2rem 0.5rem}
-.pb-meta{font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-bottom:0.5rem}
-.pb-preview{font-size:0.85rem;color:var(--text2);line-height:1.6;margin-bottom:1rem}
-.pb-toggle{font-size:0.8rem;color:var(--accent-light);border:none;background:none;cursor:pointer;padding:0 0 1rem;font-family:'JetBrains Mono',monospace;transition:color 0.2s}
+/* Collapsed: horizontal row (strip | content) */
+.pb-row{display:flex;align-items:stretch;min-height:96px;cursor:pointer;user-select:none}
+.pb-strip{width:88px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.4rem;padding:1rem 0.5rem;position:relative}
+.pb-strip-icon{font-size:1.4rem;line-height:1}
+.pb-strip-label{font-size:0.6rem;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.55);letter-spacing:0.08em;text-transform:uppercase;text-align:center;line-height:1.3}
+.pb-strip-1{background:linear-gradient(160deg,#0f172a,#1e1b4b)}
+.pb-strip-2{background:linear-gradient(160deg,#064e3b,#0c1a35)}
+.pb-strip-3{background:linear-gradient(160deg,#1a1a2e,#16213e)}
+.pb-strip-4{background:linear-gradient(160deg,#1c1917,#2d1b0e)}
+.pb-row-content{flex:1;padding:1rem 1.4rem;display:flex;flex-direction:column;justify-content:center;gap:0.3rem;border-left:1px solid var(--border)}
+.pb-row-title{font-size:0.95rem;font-weight:600;color:var(--text);line-height:1.35}
+.pb-row-meta{font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--text3)}
+.pb-row-preview{font-size:0.83rem;color:var(--text2);line-height:1.55;margin-top:0.15rem}
+.pb-row-action{display:flex;align-items:center;justify-content:space-between;margin-top:0.4rem}
+.pb-toggle{font-size:0.78rem;color:var(--accent-light);border:none;background:none;cursor:pointer;padding:0;font-family:'JetBrains Mono',monospace;transition:color 0.2s;text-align:left}
 .pb-toggle:hover{color:var(--text)}
-.pb-expand{display:none;border-top:1px solid var(--border);padding:1.5rem 1.2rem}
+.pb-chevron{font-size:0.75rem;color:var(--text3);transition:transform 0.25s}
+.pb-chevron.open{transform:rotate(180deg)}
+/* Expanded article */
+.pb-expand{display:none;border-top:1px solid var(--border);padding:1.6rem 1.6rem 1.6rem calc(88px + 1.4rem)}
 .pb-expand.open{display:block}
+@media(max-width:600px){.pb-expand{padding:1.4rem}}
 .pb-article h4{font-size:0.9rem;font-weight:600;color:var(--text);margin:1.2rem 0 0.5rem}
 .pb-article h4:first-child{margin-top:0}
-.pb-article p{font-size:0.87rem;color:var(--text2);line-height:1.8;margin-bottom:0.8rem}
-.pb-article code{font-family:'JetBrains Mono',monospace;font-size:0.8rem;background:var(--surface2);padding:0.15rem 0.4rem;border-radius:4px;color:var(--teal)}
+.pb-article p{font-size:0.87rem;color:var(--text2);line-height:1.85;margin-bottom:0.8rem}
+.pb-article code{font-family:'JetBrains Mono',monospace;font-size:0.78rem;background:var(--surface2);padding:0.15rem 0.4rem;border-radius:4px;color:var(--teal)}
 .pb-article ul{list-style:none;display:flex;flex-direction:column;gap:0.4rem;margin:0.5rem 0 1rem}
 .pb-article ul li{font-size:0.85rem;color:var(--text2);padding-left:1.2rem;position:relative;line-height:1.6}
 .pb-article ul li::before{content:'▸';position:absolute;left:0;color:var(--accent-light);font-size:0.7rem;top:3px}
 .callout{background:var(--accent-dim);border-left:3px solid var(--accent-light);border-radius:0 8px 8px 0;padding:0.8rem 1rem;font-size:0.85rem;color:var(--text);line-height:1.7;margin:1rem 0;font-style:italic}
+
+/* CONTACT FORM - toast notification */
+.form-toast{position:fixed;bottom:2rem;right:2rem;background:var(--accent);color:#fff;padding:0.8rem 1.4rem;border-radius:10px;font-size:0.85rem;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.4s ease;box-shadow:0 8px 24px rgba(99,102,241,0.4)}
+.form-toast.show{transform:translateY(0);opacity:1}
+.form-toast.error{background:#ef4444;box-shadow:0 8px 24px rgba(239,68,68,0.4)}
+.form-sending{opacity:0.6;pointer-events:none}
 
 /* CONTACT */
 .contact-section{background:var(--bg)}
@@ -284,8 +296,8 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
   .hero-stats{justify-content:center}
   .hero-actions{justify-content:center}
   .hero-socials{justify-content:center}
-  .flagship-grid,.mini-grid,.pb-grid{grid-template-columns:1fr}
-  .pb-card.pb-full{grid-column:1}
+  .flagship-grid,.mini-grid{grid-template-columns:1fr}
+
   .skills-grid,.contact-inner,.edu-grid,.certs-grid{grid-template-columns:1fr}
   .modal-metrics{grid-template-columns:1fr 1fr}
   .form-row{grid-template-columns:1fr}
@@ -399,7 +411,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
             <div class="proj-metric">Fraud peaks at 2–4am; 70%+ under $100 — card-testing pattern via SQL</div>
             <div class="proj-metric">Cost-optimised threshold (0.09): $12,750 saved vs default model setup</div>
           </div>
-          <div class="proj-tech"><span class="tech-pill">Python</span><span class="tech-pill">XGBoost</span><span class="tech-pill">SHAP</span><span class="tech-pill">MySQL</span><span class="tech-pill">Tableau</span><span class="tech-pill">SMOTE</span></div>
+          <div class="proj-tech"><span class="tech-pill">Python</span><span class="tech-pill">XGBoost</span><span class="tech-pill">SHAP</span><span class="tech-pill">MySQL</span><span class="tech-pill">Tableau</span><span class="tech-pill">SMOTE</span><span class="tech-pill">scale_pos_weight</span></div>
           <button class="view-btn">View Project →</button>
         </div>
       </div>
@@ -751,14 +763,24 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
     <div class="section-tag fade-up">Analytical Thinking</div>
     <h2 class="section-title fade-up">Insights &amp; Playbooks</h2>
     <p class="section-sub fade-up">How I think about data problems — frameworks I've built through projects.</p>
-    <div class="pb-grid fade-up">
+    <div class="pb-list fade-up">
 
+      <!-- Article 1 -->
       <div class="pb-card">
-        <div class="pb-cover pb-cover-1"><div class="pb-cover-icon">🏦</div><div class="pb-cover-title">Why BFSI Data is Different — And How to Crack It</div></div>
-        <div class="pb-body">
-          <div class="pb-meta">5 min read · BFSI · SQL · Risk Analytics</div>
-          <div class="pb-preview">The vocabulary, metrics, and mental models you need before walking into a banking analytics interview.</div>
-          <button class="pb-toggle" onclick="togglePB('pb1',this)">Read article →</button>
+        <div class="pb-row" onclick="togglePB('pb1',this)">
+          <div class="pb-strip pb-strip-1">
+            <div class="pb-strip-icon">🏦</div>
+            <div class="pb-strip-label">BFSI · SQL</div>
+          </div>
+          <div class="pb-row-content">
+            <div class="pb-row-title">Why BFSI Data is Different — And How to Crack It</div>
+            <div class="pb-row-meta">5 min read · BFSI · Risk Analytics</div>
+            <div class="pb-row-preview">The vocabulary, metrics, and mental models you need before walking into a banking analytics interview.</div>
+            <div class="pb-row-action">
+              <button class="pb-toggle">Read article →</button>
+              <span class="pb-chevron">▼</span>
+            </div>
+          </div>
         </div>
         <div class="pb-expand" id="pb1">
           <div class="pb-article">
@@ -768,44 +790,64 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
             <h4>The 5 metrics every BFSI analyst must know</h4>
             <p>NPA Ratio, CASA Ratio, Credit-to-Deposit Ratio, NIM (Net Interest Margin), and LGD (Loss Given Default). These aren't jargon — they're the KPIs your dashboards will track from day one at AmEx, KPMG, or EY FSO.</p>
             <h4>Credit risk is mispricing risk</h4>
-            <p>In my loan analysis project, Grade A borrowers — lowest rates, highest perceived quality — had the highest default rate at 18%. Classic mispriced risk. The analysis that matters isn't "who defaulted" but "who was priced wrong."</p>
-            <div class="callout">The most dangerous loan on a bank's book isn't the one in the high-risk tier. It's the one in the low-risk tier that's about to default.</div>
+            <p>In my fraud detection project, the model showed that low-amount transactions (&lt;$100) account for 70%+ of fraud — classic card-testing behaviour that traditional rule-based systems miss entirely. The analysis that matters isn't "who defrauded" but "what pattern was priced wrong."</p>
+            <div class="callout">The most dangerous transaction on a bank's book isn't the large suspicious one. It's the small one that looks normal but is testing the system.</div>
           </div>
         </div>
       </div>
 
+      <!-- Article 2 -->
       <div class="pb-card">
-        <div class="pb-cover pb-cover-2"><div class="pb-cover-icon">📊</div><div class="pb-cover-title">SQL Window Functions: The One Skill That Separates Junior from Mid-Level</div></div>
-        <div class="pb-body">
-          <div class="pb-meta">6 min read · SQL · Analytics Engineering</div>
-          <div class="pb-preview">ROW_NUMBER, RANK, LAG, LEAD — most tutorials show syntax. Here's when and why to use each one.</div>
-          <button class="pb-toggle" onclick="togglePB('pb2',this)">Read article →</button>
+        <div class="pb-row" onclick="togglePB('pb2',this)">
+          <div class="pb-strip pb-strip-2">
+            <div class="pb-strip-icon">📊</div>
+            <div class="pb-strip-label">SQL · Window Fn</div>
+          </div>
+          <div class="pb-row-content">
+            <div class="pb-row-title">SQL Window Functions: The One Skill That Separates Junior from Mid-Level</div>
+            <div class="pb-row-meta">6 min read · SQL · Analytics Engineering</div>
+            <div class="pb-row-preview">ROW_NUMBER, RANK, LAG, LEAD — most tutorials show syntax. Here's when and why to use each one.</div>
+            <div class="pb-row-action">
+              <button class="pb-toggle">Read article →</button>
+              <span class="pb-chevron">▼</span>
+            </div>
+          </div>
         </div>
         <div class="pb-expand" id="pb2">
           <div class="pb-article">
             <h4>Why window functions matter</h4>
-            <p>You can solve most business questions with GROUP BY. But once you need to compare a row to its neighbors — running totals, period-over-period growth, ranking within groups — GROUP BY breaks down. Window functions are the upgrade.</p>
+            <p>You can solve most business questions with GROUP BY. But once you need to compare a row to its neighbours — running totals, period-over-period growth, ranking within groups — GROUP BY breaks down. Window functions are the upgrade.</p>
             <h4>The four families</h4>
             <p><code>ROW_NUMBER()</code> for deduplication. <code>RANK()</code> / <code>DENSE_RANK()</code> for leaderboards. <code>LAG()</code> / <code>LEAD()</code> for period comparison. <code>SUM() OVER()</code> for running totals. Each solves a different class of problem.</p>
             <h4>Real use: month-over-month revenue</h4>
-            <p>Instead of two subqueries and a JOIN, one window expression: <code>LAG(revenue, 1) OVER (PARTITION BY region ORDER BY month)</code> gives you last month's revenue on the same row. Clean, readable, fast.</p>
+            <p>Instead of two subqueries and a JOIN, one window expression: <code>LAG(revenue, 1) OVER (PARTITION BY region ORDER BY month)</code> gives you last month's revenue on the same row. Clean, readable, fast. I used exactly this pattern in the Customer360 Pareto CTE — top 9.4% of customers drove 50.9% of revenue, confirmed in one query.</p>
             <div class="callout">Every analytics interview at Fractal, EXL, or Mu Sigma will test window functions. Not because they're hard — because they're the most useful thing a mid-level analyst does every day.</div>
           </div>
         </div>
       </div>
 
+      <!-- Article 3 -->
       <div class="pb-card">
-        <div class="pb-cover pb-cover-3"><div class="pb-cover-icon">🔍</div><div class="pb-cover-title">How to Turn EDA Findings into Business Recommendations</div></div>
-        <div class="pb-body">
-          <div class="pb-meta">4 min read · EDA · Storytelling · Python</div>
-          <div class="pb-preview">The gap between "I found something interesting" and "here's what the business should do" is where most junior analysts stop.</div>
-          <button class="pb-toggle" onclick="togglePB('pb3',this)">Read article →</button>
+        <div class="pb-row" onclick="togglePB('pb3',this)">
+          <div class="pb-strip pb-strip-3">
+            <div class="pb-strip-icon">🔍</div>
+            <div class="pb-strip-label">EDA · Python</div>
+          </div>
+          <div class="pb-row-content">
+            <div class="pb-row-title">How to Turn EDA Findings into Business Recommendations</div>
+            <div class="pb-row-meta">4 min read · EDA · Storytelling · Python</div>
+            <div class="pb-row-preview">The gap between "I found something interesting" and "here's what the business should do" is where most junior analysts stop.</div>
+            <div class="pb-row-action">
+              <button class="pb-toggle">Read article →</button>
+              <span class="pb-chevron">▼</span>
+            </div>
+          </div>
         </div>
         <div class="pb-expand" id="pb3">
           <div class="pb-article">
             <h4>Findings vs. implications</h4>
-            <p>A finding is "smokers have 3.8× higher claim costs." An implication is "risk-based premium adjustment for smokers could reduce loss ratio by 12pp." The second one gets acted on. Train yourself to always translate findings into dollar/percentage implications.</p>
-            <div class="callout">Stakeholders don't care about your correlation coefficient. They care about what it means for next quarter's numbers.</div>
+            <p>A finding is "fraud peaks at 2–4am." An implication is "scheduling real-time alert triggers for the 2–4am window reduces false-negative cost by an estimated 22%." The second one gets acted on. Train yourself to always translate findings into dollar or percentage implications.</p>
+            <div class="callout">Stakeholders don't care about your AUC-ROC. They care about what it means for next quarter's loss ratio.</div>
             <h4>The four-sentence recommendation framework</h4>
             <p>What you found. Why it matters in business terms. What should change. What the expected outcome is. Every EDA slide should close with this structure. It's what separates a data analyst from a data reporter.</p>
             <h4>Apply it to your portfolio</h4>
@@ -814,12 +856,22 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
         </div>
       </div>
 
-      <div class="pb-card pb-full">
-        <div class="pb-cover pb-cover-4"><div class="pb-cover-icon">🎯</div><div class="pb-cover-title">The Fresher's Guide to Breaking Into Analytics — What Actually Works in 2025</div></div>
-        <div class="pb-body">
-          <div class="pb-meta">8 min read · Career · Portfolio · Job Search</div>
-          <div class="pb-preview">The exact stack, project types, and positioning that gets 0-year candidates into Fractal, EXL, and Big 4 analytics teams.</div>
-          <button class="pb-toggle" onclick="togglePB('pb4',this)">Read article →</button>
+      <!-- Article 4 -->
+      <div class="pb-card">
+        <div class="pb-row" onclick="togglePB('pb4',this)">
+          <div class="pb-strip pb-strip-4">
+            <div class="pb-strip-icon">🎯</div>
+            <div class="pb-strip-label">Career · 2025</div>
+          </div>
+          <div class="pb-row-content">
+            <div class="pb-row-title">The Fresher's Guide to Breaking Into Analytics — What Actually Works in 2025</div>
+            <div class="pb-row-meta">8 min read · Career · Portfolio · Job Search</div>
+            <div class="pb-row-preview">The exact stack, project types, and positioning that gets 0-year candidates into Fractal, EXL, and Big 4 analytics teams.</div>
+            <div class="pb-row-action">
+              <button class="pb-toggle">Read article →</button>
+              <span class="pb-chevron">▼</span>
+            </div>
+          </div>
         </div>
         <div class="pb-expand" id="pb4">
           <div class="pb-article">
@@ -827,7 +879,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
             <p>Python for EDA. SQL for business queries. Power BI for storytelling. In that order. Most freshers reverse it and wonder why their resume gets filtered. ATS systems at Fractal, EXL, and Big 4 firms scan for Python + SQL as a paired keyword cluster — both need to appear in context.</p>
             <div class="callout">You don't need 10 projects. You need 3 projects where you can clearly explain the business problem, the method, and the recommendation. Depth beats breadth at every analytics interview.</div>
             <h4>Domain is the differentiator</h4>
-            <p>BFSI vocabulary sets you apart for AmEx, KPMG FSO, and EY. FMCG/retail vocabulary works for Mu Sigma, Tiger Analytics, and ZS. Pick one domain, build two projects in it, and learn the KPIs cold. "I worked on a credit risk project" + knowing what NPA ratio means = serious candidate.</p>
+            <p>BFSI vocabulary sets you apart for AmEx, KPMG FSO, and EY. FMCG/retail vocabulary works for Mu Sigma, Tiger Analytics, and ZS. Pick one domain, build two projects in it, and learn the KPIs cold. "I worked on a fraud detection project" + knowing what AUC-PR means in cost-sensitive classification = serious candidate.</p>
             <h4>What interviewers actually test</h4>
             <p>SQL window functions (every firm). Python pandas operations (Fractal, EXL). One full project walkthrough from problem to insight (Big 4). ATS parsing of your resume (all automated first screens). None of these require experience — they require deliberate preparation.</p>
           </div>
@@ -856,15 +908,29 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
           <a href="tel:+91 9871860596" class="contact-link"><div class="contact-link-icon">📞</div>+91 9871860596</a>
         </div>
       </div>
-      <div class="contact-form">
+      <div class="contact-form" id="contactForm">
         <div class="form-row">
-          <div class="form-group"><label>Name</label><input type="text" placeholder="Your name"></div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+          <div class="form-group">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" type="text" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" placeholder="your@email.com" required>
+          </div>
         </div>
-        <div class="form-group"><label>Subject</label><input type="text" placeholder="What's this about?"></div>
-        <div class="form-group"><label>Message</label><textarea placeholder="Tell me about the opportunity..."></textarea></div>
-        <button class="btn-primary" style="width:100%">Send Message</button>
+        <div class="form-group">
+          <label for="cf-subject">Subject</label>
+          <input id="cf-subject" type="text" placeholder="What's this about?">
+        </div>
+        <div class="form-group">
+          <label for="cf-msg">Message</label>
+          <textarea id="cf-msg" placeholder="Tell me about the opportunity..." required></textarea>
+        </div>
+        <button class="btn-primary" id="cf-submit" onclick="sendMessage()" style="width:100%">Send Message</button>
       </div>
+      <!-- Toast notification -->
+      <div class="form-toast" id="formToast"></div>
     </div>
   </div>
 </section>
@@ -899,7 +965,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
           <li>Phase 1 — MySQL SQL analysis: 5 queries, fraud rate by hour, card-testing pattern in amount buckets, 3 reusable views</li>
           <li>Phase 2 — EDA: 8 charts; V14, V17, V12 are strongest predictors (correlation confirmed later by SHAP)</li>
           <li>Phase 3 — Feature engineering: 8 new features including is_night, txn_velocity_1h, cyclical time encoding</li>
-          <li>Phase 4 — Imbalance: scale_pos_weight=577 beat SMOTE on AUC-PR (0.880 vs 0.858)</li>
+          <li>Phase 4 — Imbalance: ran both SMOTE (Strategy B, AUC-PR 0.858) and scale_pos_weight=577 (Strategy A, AUC-PR 0.880) — scale_pos_weight won; threshold tuned to 0.09</li>
           <li>Phase 5 — XGBoost + GridSearchCV, 5-fold stratified CV, AUC-PR as scoring metric</li>
           <li>Phase 6 — SHAP explainability: 6 charts including waterfall plots for individual fraud/legit decisions</li>
           <li>Phase 7 — Business ROI: cost matrix analysis, threshold optimisation at 0.09 (not default 0.5)</li>
@@ -917,7 +983,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
       </div>
       <div class="modal-section">
         <div class="modal-section-title">Tools Used</div>
-        <div class="modal-tools"><span class="modal-tool">Python</span><span class="modal-tool">XGBoost</span><span class="modal-tool">SHAP</span><span class="modal-tool">SMOTE</span><span class="modal-tool">MySQL</span><span class="modal-tool">Tableau</span><span class="modal-tool">GridSearchCV</span><span class="modal-tool">Scikit-learn</span></div>
+        <div class="modal-tools"><span class="modal-tool">Python</span><span class="modal-tool">XGBoost</span><span class="modal-tool">SHAP</span><span class="modal-tool">SMOTE</span><span class="modal-tool">scale_pos_weight</span><span class="modal-tool">MySQL</span><span class="modal-tool">Tableau</span><span class="modal-tool">GridSearchCV</span><span class="modal-tool">Scikit-learn</span></div>
       </div>
     </div>
     <div class="modal-footer">
@@ -1029,7 +1095,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
 </div>
 
 <script>
-// Theme toggle
+// ── Theme toggle ──────────────────────────────────────────────
 function toggleTheme() {
   const html = document.documentElement;
   const isDark = html.getAttribute('data-theme') === 'dark';
@@ -1038,12 +1104,13 @@ function toggleTheme() {
   document.getElementById('theme-label').textContent = isDark ? 'Dark' : 'Light';
 }
 
-// Resume download
+// ── Resume download ───────────────────────────────────────────
 function downloadResume() {
-  alert('Link your resume PDF here — replace this alert with: window.open("your-resume.pdf")');
+  // Replace 'your-resume.pdf' with the actual path to your resume file
+  alert('Replace this with: window.open("your-resume.pdf")');
 }
 
-// Modal
+// ── Project modals ────────────────────────────────────────────
 function openModal(id) {
   document.getElementById(id).classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1053,40 +1120,98 @@ function closeModal(id) {
   document.body.style.overflow = '';
 }
 function closeModalOutside(e, id) {
-  if(e.target === document.getElementById(id)) closeModal(id);
+  if (e.target === document.getElementById(id)) closeModal(id);
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape')
+    document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+});
+
+// ── Playbook accordion ────────────────────────────────────────
+function togglePB(id, rowEl) {
+  const expand  = document.getElementById(id);
+  const isOpen  = expand.classList.contains('open');
+  // Close all others first
+  document.querySelectorAll('.pb-expand.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.pb-chevron.open').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.pb-toggle').forEach(btn => { btn.textContent = 'Read article →'; });
+  // If this one was closed, open it
+  if (!isOpen) {
+    expand.classList.add('open');
+    const chevron = rowEl.querySelector('.pb-chevron');
+    const toggle  = rowEl.querySelector('.pb-toggle');
+    if (chevron) chevron.classList.add('open');
+    if (toggle)  toggle.textContent = 'Close ←';
+  }
 }
 
-// Playbook toggle
-function togglePB(id, btn) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.contains('open');
-  el.classList.toggle('open', !isOpen);
-  btn.textContent = isOpen ? 'Read article →' : 'Close ←';
+// ── Contact form — mailto fallback (works without any backend) ──
+function showToast(msg, isError) {
+  const toast = document.getElementById('formToast');
+  toast.textContent = msg;
+  toast.className = 'form-toast' + (isError ? ' error' : '') + ' show';
+  setTimeout(() => { toast.classList.remove('show'); }, 4000);
 }
 
-// Scroll fade-up
+function sendMessage() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const subject = document.getElementById('cf-subject').value.trim();
+  const msg     = document.getElementById('cf-msg').value.trim();
+
+  if (!name || !email || !msg) {
+    showToast('⚠️ Please fill in Name, Email, and Message.', true);
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showToast('⚠️ Please enter a valid email address.', true);
+    return;
+  }
+
+  // Build mailto link — opens user's email client with fields pre-filled
+  const to      = 'sandeepsinghss9871@gmail.com';
+  const subLine = encodeURIComponent((subject || 'Portfolio Enquiry') + ' — from ' + name);
+  const body    = encodeURIComponent(
+    'Hi Sandeep,\n\n' + msg +
+    '\n\n---\nSent from your portfolio by: ' + name +
+    '\nReply to: ' + email
+  );
+  const mailtoURL = `mailto:${to}?subject=${subLine}&body=${body}`;
+
+  // Open mail client
+  const link = document.createElement('a');
+  link.href = mailtoURL;
+  link.click();
+
+  // Show success toast
+  showToast('✅ Opening your mail client — just hit Send!', false);
+
+  // Clear form
+  document.getElementById('cf-name').value    = '';
+  document.getElementById('cf-email').value   = '';
+  document.getElementById('cf-subject').value = '';
+  document.getElementById('cf-msg').value     = '';
+}
+
+// ── Scroll fade-up ────────────────────────────────────────────
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
-}, {threshold: 0.08});
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.08 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-// Animate skill bars when visible
+// ── Skill bar animation ───────────────────────────────────────
 const skillObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting) {
+    if (e.isIntersecting) {
       e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
         const w = bar.getAttribute('data-width');
-        if(w) bar.style.width = w;
+        if (w) bar.style.width = w;
       });
     }
   });
-}, {threshold: 0.2});
+}, { threshold: 0.2 });
 document.querySelectorAll('.skill-group').forEach(el => skillObs.observe(el));
-
-// ESC to close modal
-document.addEventListener('keydown', e => {
-  if(e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
-});
 </script>
 </body>
 </html>
