@@ -3,7 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>"Sandeep Singh | Data Analyst | SQL, Python, Tableau | New Delhi</title>
+<title>Sandeep Singh | Data Analyst | SQL, Python, Power BI | New Delhi</title>
+
+<!-- SEO -->
+<meta name="description" content="Sandeep Singh — Data Analyst with end-to-end projects in fraud detection (AUC-ROC 0.977), customer segmentation, and A/B testing across 1M+ records. Python · SQL · Power BI · XGBoost · Tableau. Open to roles at Fractal, EXL, KPMG, AmEx.">
+<meta name="keywords" content="Data Analyst, Python, SQL, Power BI, Tableau, XGBoost, SHAP, RFM, BFSI, Fraud Detection, Customer Segmentation, New Delhi, Sandeep Singh">
+<meta name="author" content="Sandeep Singh">
+
+<!-- Open Graph — controls LinkedIn / WhatsApp preview card -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sandeepsingh9871.github.io/portfolio/">
+<meta property="og:title" content="Sandeep Singh | Data Analyst Portfolio">
+<meta property="og:description" content="End-to-end analytics projects in BFSI fraud detection, customer segmentation & A/B testing. AUC-ROC 0.977 · $12,750 saved · 43% conversion lift. Python · SQL · Power BI · XGBoost.">
+<meta property="og:image" content="sandeep-singh.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_IN">
+<meta property="og:site_name" content="Sandeep Singh — Data Analyst">
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sandeep Singh | Data Analyst Portfolio">
+<meta name="twitter:description" content="Fraud detection (AUC 0.977), customer segmentation & A/B testing. Python · SQL · Power BI · XGBoost · Tableau.">
+<meta name="twitter:image" content="sandeep-singh.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -289,6 +311,20 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
 .footer-left{font-size:0.8rem;color:var(--text3)}
 .footer-right{font-size:0.8rem;color:var(--text3)}
 
+/* HAMBURGER MENU */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:6px;transition:border-color 0.2s}
+.hamburger span{display:block;height:1.5px;background:var(--text2);border-radius:2px;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);z-index:999;padding:1rem 5%;flex-direction:column;gap:0}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text2);text-decoration:none;font-size:0.92rem;font-weight:500;padding:0.75rem 0;border-bottom:1px solid var(--border);transition:color 0.2s;display:block}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:var(--text)}
+.mobile-overlay{display:none;position:fixed;inset:0;top:64px;background:rgba(0,0,0,0.4);z-index:998}
+.mobile-overlay.open{display:block}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero-inner{flex-direction:column;gap:2rem;text-align:center}
@@ -297,11 +333,11 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
   .hero-actions{justify-content:center}
   .hero-socials{justify-content:center}
   .flagship-grid,.mini-grid{grid-template-columns:1fr}
-
   .skills-grid,.contact-inner,.edu-grid,.certs-grid{grid-template-columns:1fr}
   .modal-metrics{grid-template-columns:1fr 1fr}
   .form-row{grid-template-columns:1fr}
   nav .nav-links{display:none}
+  .hamburger{display:flex}
 }
 </style>
 </head>
@@ -314,7 +350,6 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
-    <!--<li><a href="#experience">Experience</a></li>-->
     <li><a href="#playbooks">Insights</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -324,8 +359,21 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
       <span id="theme-label">Light</span>
     </button>
     <a href="#" class="resume-btn" onclick="downloadResume()">↓ Resume</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
+
+<!-- Mobile dropdown menu -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#about"    onclick="closeMenu()">About</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#skills"   onclick="closeMenu()">Skills</a>
+  <a href="#playbooks" onclick="closeMenu()">Insights</a>
+  <a href="#contact"  onclick="closeMenu()">Contact</a>
+</nav>
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
 
 <!-- HERO -->
 
@@ -519,12 +567,12 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
       <div class="mini-card fade-up">
         <div class="mini-icon">🏥</div>
         <h4>30-Day Hospital Readmission Risk Prediction</h4>
-        <div class="mini-stack">Python · Scikit-learn · Healthcare Analytics</div>
-        <p>End-to-end ML pipeline predicting 30-day hospital readmission risk — feature engineering on patient demographics, diagnosis codes, and prior admission history with clinical business recommendations.</p>
+        <div class="mini-stack">Python · XGBoost · SHAP · Power BI · 101,766 patients</div>
+        <p>End-to-end ML pipeline on 101,766 diabetic patient records — predicting 30-day readmission risk to help hospitals reduce the $26 billion annual readmission cost under the CMS HRRP penalty program.</p>
         <div class="mini-findings">
-          <div class="mini-finding">Prior admission count is strongest readmission predictor</div>
-          <div class="mini-finding">Diabetic patients: highest 30-day readmission rate</div>
-          <div class="mini-finding">Model intervention saved projected cost per false negative</div>
+          <div class="mini-finding">Diabetic patients: highest-risk segment for 30-day readmission</div>
+          <div class="mini-finding">Number of prior inpatient visits = strongest readmission predictor (SHAP)</div>
+          <div class="mini-finding">Power BI dashboard: high-risk patient triage view for clinical teams</div>
         </div>
         <a href="https://github.com/sandeepsingh9871/30-Day-Hospital-Readmission-Risk-Prediction" target="_blank" class="mini-link">View on GitHub →</a>
       </div>
@@ -902,7 +950,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
         <h3>Open to opportunities</h3>
         <p>Looking for data analyst roles. Open to full-time positions and analytics trainee programs.</p>
         <div class="contact-links">
-          <a href="mailto:sandeepsinghss@gmail.com" class="contact-link"><div class="contact-link-icon">✉</div>sandeepsinghss9871@gmail.com</a>
+          <a href="mailto:sandeepsinghss9871@gmail.com" class="contact-link"><div class="contact-link-icon">✉</div>sandeepsinghss9871@gmail.com</a>
           <a href="https://linkedin.com/in/sandeep-singh-aaa1271b7/" target="_blank" class="contact-link"><div class="contact-link-icon">in</div>linkedin.com/in/sandeep-singh</a>
           <a href="https://github.com/sandeepsingh9871" target="_blank" class="contact-link"><div class="contact-link-icon">gh</div>github.com/sandeepsingh9871</a>
           <a href="tel:+91 9871860596" class="contact-link"><div class="contact-link-icon">📞</div>+91 9871860596</a>
@@ -988,6 +1036,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
     </div>
     <div class="modal-footer">
       <a href="https://github.com/sandeepsingh9871/Credit-Card-Fraud-Detection-Transaction-Risk-Analytics" target="_blank" class="github-link">↗ View on GitHub</a>
+      <a href="https://public.tableau.com/views/CreditCardFraudDetection-RiskAnalyticsDashboard/CreditCardFraudDetection-RiskAnalyticsDashboard?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="github-link" style="color:var(--teal)">📊 Live Tableau Dashboard</a>
       <button class="btn-primary" onclick="closeModal('modal-fraud')">Close</button>
     </div>
   </div>
@@ -1036,6 +1085,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
     </div>
     <div class="modal-footer">
       <a href="https://github.com/sandeepsingh9871/Customer360-Analytics-Pipeline" target="_blank" class="github-link">↗ View on GitHub</a>
+      <a href="https://public.tableau.com/views/Customer360AnalyticsDashboard_17785659253420/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="github-link" style="color:var(--teal)">📊 Live Tableau Dashboard</a>
       <button class="btn-primary" onclick="closeModal('modal-customer360')">Close</button>
     </div>
   </div>
@@ -1089,12 +1139,31 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
     </div>
     <div class="modal-footer">
       <a href="https://github.com/sandeepsingh9871/A-B-Test-Analysis-Marketing-Campaign" target="_blank" class="github-link">↗ View on GitHub</a>
+      <a href="https://public.tableau.com/views/AB-Test-Marketing-Campaign-Sandeep-Singh/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="github-link" style="color:var(--teal)">📊 Live Tableau Dashboard</a>
       <button class="btn-primary" onclick="closeModal('modal-abtest')">Close</button>
     </div>
   </div>
 </div>
 
 <script>
+// ── Hamburger menu ────────────────────────────────────────────
+function toggleMenu() {
+  const menu    = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('mobileOverlay');
+  const burger  = document.getElementById('hamburger');
+  const isOpen  = menu.classList.contains('open');
+  menu.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+  burger.classList.toggle('open', !isOpen);
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 // ── Theme toggle ──────────────────────────────────────────────
 function toggleTheme() {
   const html = document.documentElement;
