@@ -358,8 +358,8 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
       <span id="theme-icon">☀️</span>
       <span id="theme-label">Light</span>
     </button>
-    <a href="#" class="resume-btn" onclick="downloadResume()">↓ Resume</a>
-    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <a href="Sandeep_Analyst_Resume.pdf" class="resume-btn" download>↓ Resume</a>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()" role="button" aria-label="Toggle navigation menu" aria-expanded="false" tabindex="0">
       <span></span><span></span><span></span>
     </div>
   </div>
@@ -385,7 +385,7 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
   <div class="hero-inner">
     <div class="hero-photo-wrap">
       <!-- Replace the div below with an <img> tag once you have your photo -->
-       <img src="Sandeep-singh.jpg" alt="Sandeep"> 
+       <img src="Sandeep-singh.jpg" alt="Sandeep Singh, Data Analyst, New Delhi" loading="lazy"> 
       <!--<div class="hero-photo-placeholder">👤</div>-->
       <div class="hero-photo-ring"></div>
     </div>
@@ -991,11 +991,11 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
 <!-- ===== PROJECT MODALS ===== -->
 
 <!-- Credit Card Fraud Modal -->
-<div class="modal-overlay" id="modal-fraud" onclick="closeModalOutside(event,'modal-fraud')">
+<div class="modal-overlay" id="modal-fraud" onclick="closeModalOutside(event,'modal-fraud')" role="dialog" aria-modal="true" aria-labelledby="modal-fraud-title">
   <div class="modal">
     <div class="modal-header">
-      <div><div class="modal-title">Credit Card Fraud Detection & Risk Analytics</div><div class="modal-sub">Python · XGBoost · SHAP · MySQL · Tableau · 284K Transactions</div></div>
-      <button class="modal-close" onclick="closeModal('modal-fraud')">✕</button>
+      <div><div class="modal-title" id="modal-fraud-title">Credit Card Fraud Detection & Risk Analytics</div><div class="modal-sub">Python · XGBoost · SHAP · MySQL · Tableau · 284K Transactions</div></div>
+      <button class="modal-close" onclick="closeModal('modal-fraud')" aria-label="Close modal">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-metrics">
@@ -1043,11 +1043,11 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
 </div>
 
 <!-- Customer360 Modal -->
-<div class="modal-overlay" id="modal-customer360" onclick="closeModalOutside(event,'modal-customer360')">
+<div class="modal-overlay" id="modal-customer360" onclick="closeModalOutside(event,'modal-customer360')" role="dialog" aria-modal="true" aria-labelledby="modal-customer360-title">
   <div class="modal">
     <div class="modal-header">
-      <div><div class="modal-title">Customer 360 Analytics Pipeline</div><div class="modal-sub">Python → MySQL → Tableau · Identity Resolution · RFM · CLTV</div></div>
-      <button class="modal-close" onclick="closeModal('modal-customer360')">✕</button>
+      <div><div class="modal-title" id="modal-customer360-title">Customer 360 Analytics Pipeline</div><div class="modal-sub">Python → MySQL → Tableau · Identity Resolution · RFM · CLTV</div></div>
+      <button class="modal-close" onclick="closeModal('modal-customer360')" aria-label="Close modal">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-metrics">
@@ -1092,11 +1092,11 @@ footer{padding:2rem 5%;display:flex;justify-content:space-between;align-items:ce
 </div>
 
 <!-- A/B Test Modal -->
-<div class="modal-overlay" id="modal-abtest" onclick="closeModalOutside(event,'modal-abtest')">
+<div class="modal-overlay" id="modal-abtest" onclick="closeModalOutside(event,'modal-abtest')" role="dialog" aria-modal="true" aria-labelledby="modal-abtest-title">
   <div class="modal">
     <div class="modal-header">
-      <div><div class="modal-title">A/B Test — Marketing Campaign Effectiveness</div><div class="modal-sub">Python · SciPy · Seaborn · Tableau · 588K Users · Causal Inference</div></div>
-      <button class="modal-close" onclick="closeModal('modal-abtest')">✕</button>
+      <div><div class="modal-title" id="modal-abtest-title">A/B Test — Marketing Campaign Effectiveness</div><div class="modal-sub">Python · SciPy · Seaborn · Tableau · 588K Users · Causal Inference</div></div>
+      <button class="modal-close" onclick="closeModal('modal-abtest')" aria-label="Close modal">✕</button>
     </div>
     <div class="modal-body">
       <div class="modal-metrics">
@@ -1175,8 +1175,13 @@ function toggleTheme() {
 
 // ── Resume download ───────────────────────────────────────────
 function downloadResume() {
-  // Replace 'your-resume.pdf' with the actual path to your resume file
-  alert('Replace this with: window.open("your-resume.pdf")');
+  // Open the resume file in a new tab (fallback for users who trigger via JS)
+  const resumePath = 'Sandeep_Analyst_Resume.pdf';
+  try {
+    window.open(resumePath, '_blank');
+  } catch (e) {
+    alert('Unable to open resume. You can find the file in the site root: ' + resumePath);
+  }
 }
 
 // ── Project modals ────────────────────────────────────────────
